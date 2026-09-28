@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+    <div class="cell-content" th:fragment="celda" th:with="celda=${celda}">
+        <div th:if="${celda.esHormiga}" class="hormiga" th:text="${celda.simboloDireccion}"></div>
+        <div th:if="${!celda.esHormiga and celda.esFeromona}" class="feromona"></div>
+        <div th:if="${!celda.esHormiga and !celda.esFeromona}" class="miga"></div>
+    </div>
+</body>
+</html>

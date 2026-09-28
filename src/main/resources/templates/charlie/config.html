@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuracion</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body class="min-vh-100 d-flex align-items-center justify-content-center">
+<div style="width: 480px;">
+    <h1 class="mb-4 text-center">Configuracion de la "Isla del Capricho"</h1>
+
+    <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+    <form th:action="@{/charlie/config}" method="post">
+        <div class="mb-3">
+            <label class="form-label">Dimension inicial de la zona:</label>
+            <input type="text" class="form-control" name="dimensionInicial" placeholder="5,5" required
+                   th:value="${config != null ? config.filasIniciales + ',' + config.columnasIniciales : '5,5'}">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Aumento de vision de la hormiga:</label>
+            <input type="text" class="form-control" name="aumentoVision" placeholder="4" required
+                   th:value="${config != null ? config.aumentoVision : 4}">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Posicion inicial de la hormiga:</label>
+            <input type="text" class="form-control" name="posicionInicial" placeholder="2,2" required
+                   th:value="${config != null ? config.hormigaPosXInicial + ',' + config.hormigaPosYInicial : '2,2'}">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Direccion inicial de la hormiga:</label>
+            <input type="text" class="form-control" name="direccionInicial" placeholder="R" required
+                   th:value="${config != null ? T(com.example.hormiga_charlie.dto.DireccionDTO).valueOf(config.direccionInicial).codigo : 'R'}">
+        </div>
+
+        <button type="submit" class="btn btn-primary d-block mx-auto px-4">Configurar</button>
+    </form>
+</div>
+
+<script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

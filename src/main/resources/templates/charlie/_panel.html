@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="panel" th:with="tableroDTO=${tableroDTO}">
+    <form th:action="@{/charlie/avanzar}" method="post" class="mb-2">
+        <label class="form-label mb-1">Cantidad de foto por actualizacion:</label>
+        <div class="input-group">
+            <input type="number" class="form-control" name="fotosPorActualizacion"
+                   min="1" required th:value="${tableroDTO.fotosPorActualizacion}">
+            <button type="submit" class="btn btn-primary">Iniciar</button>
+        </div>
+    </form>
+
+    <form th:action="@{/charlie/reiniciar}" method="post" class="mb-2">
+        <button type="submit" class="btn btn-outline-secondary w-100">Reiniciar</button>
+    </form>
+
+    <a th:href="@{/charlie/config}" class="btn btn-outline-secondary w-100 mb-3">Cambiar configuracion</a>
+
+    <div class="small">
+        <div class="d-flex align-items-center gap-2 mb-1">
+            <span class="d-inline-block border" style="width:16px;height:16px;background-color:#a6cee3;"></span> Miga
+        </div>
+        <div class="d-flex align-items-center gap-2 mb-1">
+            <span class="d-inline-block border" style="width:16px;height:16px;background-color:#000000;"></span> Feromona
+        </div>
+        <div class="d-flex align-items-center gap-2">
+            <span class="d-inline-block border" style="width:16px;height:16px;background-color:#e94560;"></span> Charlie
+        </div>
+    </div>
+</div>
+</body>
+</html>

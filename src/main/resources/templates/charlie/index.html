@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charlie la Hormiga</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <style>
+        /* Tablero: parcelas azules separadas por lineas blancas */
+        html, body { overflow-x: hidden; }
+        .board-table {
+            border-collapse: separate;
+            border-spacing: 2px;
+            background-color: #ffffff;
+            margin: 0 auto;
+        }
+        .board-table td { width: 8px; height: 8px; padding: 0; border: none; }
+        .miga, .feromona, .hormiga { width: 8px; height: 8px; }
+        .miga      { background-color: #a6cee3; }
+        .feromona  { background-color: #000000; }
+        .hormiga   { background-color: #e94560; color: white;
+            font-size: 8px; font-weight: bold; text-align: center; line-height: 10px; }
+    </style>
+</head>
+<body>
+<div class="container-fluid py-3">
+    <h1 class="text-center mb-3">La Hormiga Charlie</h1>
+
+    <!-- Panel debajo del tablero, centrado -->
+    <div class="row justify-content-center mt-3">
+        <div class="col-md-4">
+            <div th:replace="~{charlie/_panel :: panel}"></div>
+        </div>
+    </div>
+
+    <!-- Tablero centrado en la pantalla -->
+    <div class="row justify-content-center">
+        <div class="col-12 d-flex justify-content-center" style="max-height: 65vh; max-width: 100%; overflow: unset;">
+            <div th:with="zoom=${T(java.lang.Math).min(1.0, 1000.0 / (tableroDTO.filas * 10.0))}"
+                 th:style="'transform: scale(' + ${zoom} + '); transform-origin: top center;'">
+                <div th:replace="~{charlie/_tablero :: tablero}"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

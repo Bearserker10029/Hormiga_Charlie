@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<table class="board-table" th:fragment="tablero" th:with="tableroDTO=${tableroDTO}">
+    <tbody>
+    <tr th:each="y : ${#numbers.sequence(1, tableroDTO.filas)}">
+        <td th:each="x : ${#numbers.sequence(1, tableroDTO.columnas)}">
+            <th:block th:with="celdaKey=${x + '-' + y}">
+                <th:block th:with="celda=${celdasByPos.get(celdaKey)}">
+                    <div th:replace="~{charlie/_celda :: celda}"></div>
+                </th:block>
+            </th:block>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
